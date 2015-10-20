@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.geom.*;
+import java.util.Random;
 
 /**
  * The BoxBall class creates balls to be drawn inside a canvas without speed degradation or slow
@@ -11,6 +12,8 @@ import java.awt.geom.*;
  */
 public class BoxBall
 {
+    private Random rand = new Random();
+    
     private Ellipse2D.Double circle;
     private Color color;
     private int diameter;
@@ -21,11 +24,11 @@ public class BoxBall
     private final int rightWallPosition;
     private final int ceilingPosition;
     private Canvas canvas;
-    private int ySpeed = 2;                // initial downward speed
-    private int xSpeed = 6;
+    private int ySpeed = rand.nextInt(10);                // initial downward speed
+    private int xSpeed = rand.nextInt(10);
 
     /**
-     * Constructor for objects of class BouncingBall
+     * Constructor for objects of class BoxBall
      *
      * @param xPos  the horizontal coordinate of the ball
      * @param yPos  the vertical coordinate of the ball
@@ -70,7 +73,7 @@ public class BoxBall
     }    
 
     /**
-     * Move this ball according to its position and speed and redraw.
+     * Move this ball according to its position and speed and redraw. Will also bounce off walls.
      **/
     public void move()
     {
@@ -86,12 +89,12 @@ public class BoxBall
             yPosition = (int)(groundPosition - diameter);
             ySpeed = -ySpeed;
         } 
-        else if (yPosition <= (ceilingPosition - diameter)) {
-            yPosition = (int)(ceilingPosition - diameter);
+        else if (yPosition <= (ceilingPosition)) {
+            yPosition = (int)(ceilingPosition);
             ySpeed = -ySpeed;
         }
-        if (xPosition <= (leftWallPosition - diameter)) {
-            xPosition = (int)(leftWallPosition - diameter);
+        if (xPosition <= (leftWallPosition)) {
+            xPosition = (int)(leftWallPosition);
             xSpeed = -xSpeed;
         } 
         else if (xPosition >= (rightWallPosition - diameter)) {
