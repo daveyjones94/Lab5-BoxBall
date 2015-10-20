@@ -81,6 +81,10 @@ public class BallDemo
             myCanvas.wait(50);           // small delay
             ball.move();
             ball2.move();
+            myCanvas.drawLine(50, ground, 550, ground);
+            myCanvas.drawLine(50, ceiling, 550, ceiling);
+            myCanvas.drawLine(leftWall, 100, leftWall, 400);
+            myCanvas.drawLine(rightWall, 100, rightWall, 400);
             // stop once ball has travelled a certain distance on x axis
             if(ball.getXPosition() >= 550 || ball2.getXPosition() >= 550) {
                 finished = true;
