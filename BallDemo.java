@@ -13,6 +13,7 @@ public class BallDemo
 {
     private Canvas myCanvas;
     private Random rand = new Random();
+    private final int OFFSET = 100;
 
     /**
      * Create a BallDemo object. Creates a fresh canvas and makes it visible.
@@ -58,19 +59,23 @@ public class BallDemo
      */
     public void boxBounce()
     {
-        int numBalls = (rand.nextInt(96))+5; // number of balls in this box
-        int ground = 400;   // position of the ground line
-        int ceiling = 100;  // position of the ceiling line
-        int leftWall = 50;  // position of the left wall line
-        int rightWall = 550;    //position of the right wall line
+        int numBalls = (rand.nextInt(96))+5; // number of balls in this box 
+        // position of the ground line
+        int ground = (int)(myCanvas.getSize().getHeight()) - OFFSET;
+        // position of the ceiling line
+        int ceiling = OFFSET;
+        // position of the left wall line
+        int leftWall = OFFSET;
+        //position of the right wall line
+        int rightWall = (int)(myCanvas.getSize().getHeight()) - OFFSET;
 
         myCanvas.setVisible(true);
 
-        // draw the ground
-        myCanvas.drawLine(50, ground, 550, ground);
-        myCanvas.drawLine(50, ceiling, 550, ceiling);
-        myCanvas.drawLine(leftWall, 100, leftWall, 400);
-        myCanvas.drawLine(rightWall, 100, rightWall, 400);
+        // draw the box
+        myCanvas.drawLine(leftWall, ground, rightWall, ground);
+        myCanvas.drawLine(leftWall, ceiling, rightWall, ceiling);
+        myCanvas.drawLine(leftWall, ceiling, leftWall, ground);
+        myCanvas.drawLine(rightWall, ceiling, rightWall, ground);
         
         // slam a bunch of balls in there
         BoxBall[] arrayOfBalls = new BoxBall[numBalls];
@@ -87,10 +92,10 @@ public class BallDemo
             for (BoxBall b : arrayOfBalls) {
                 b.move();
             }
-            myCanvas.drawLine(50, ground, 550, ground);
-            myCanvas.drawLine(50, ceiling, 550, ceiling);
-            myCanvas.drawLine(leftWall, 100, leftWall, 400);
-            myCanvas.drawLine(rightWall, 100, rightWall, 400);
+            myCanvas.drawLine(leftWall, ground, rightWall, ground);
+            myCanvas.drawLine(leftWall, ceiling, rightWall, ceiling);
+            myCanvas.drawLine(leftWall, ceiling, leftWall, ground);
+            myCanvas.drawLine(rightWall, ceiling, rightWall, ground);
         }
     }
 }

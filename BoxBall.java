@@ -8,24 +8,23 @@ import java.util.Random;
  * with full speed, going into other walls.
  * 
  * @author David Martinez
- * @version 1.0 (10-19-2015)
+ * @version 1.2 (10-26-2015)
  */
 public class BoxBall
 {
     private Random rand = new Random();
-    
     private Ellipse2D.Double circle;
     private Color color;
     private int diameter;
     private int xPosition;
     private int yPosition;
-    private final int groundPosition;      // y position of ground
-    private final int leftWallPosition;
-    private final int rightWallPosition;
-    private final int ceilingPosition;
+    private int groundPosition;      // y position of ground
+    private int leftWallPosition;
+    private int rightWallPosition;
+    private int ceilingPosition;
     private Canvas canvas;
-    private int ySpeed = rand.nextInt(10);                // initial downward speed
-    private int xSpeed = rand.nextInt(10);
+    private int ySpeed = (rand.nextInt(8))+1;                // initial downward speed
+    private int xSpeed = (rand.nextInt(8))+1;
 
     /**
      * Constructor for objects of class BoxBall
